@@ -1,0 +1,15 @@
+group 'com.hoomi'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+
+dependencies {
+    compile 'io.reactivex:rxjava:1.0.10'
+    testCompile 'org.mockito:mockito-all:2.0.2-beta'
+    testCompile 'junit:junit:4.12'
+}
