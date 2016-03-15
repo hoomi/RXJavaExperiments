@@ -1,8 +1,7 @@
-package com.hoomi.rxjava;
+package com.hoomi.rxjava.second;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import rx.Observable;
@@ -12,7 +11,6 @@ import java.io.PrintStream;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
 /**

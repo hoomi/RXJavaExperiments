@@ -1,4 +1,4 @@
-package com.hoomi.rxjava;
+package com.hoomi.rxjava.first;
 
 import rx.Observable;
 import rx.functions.Action0;

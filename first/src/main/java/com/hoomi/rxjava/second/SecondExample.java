@@ -1,15 +1,13 @@
-package com.hoomi.rxjava;
+package com.hoomi.rxjava.second;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.Func1;
 import rx.observables.ConnectableObservable;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -74,8 +72,6 @@ public class SecondExample {
                 if (!subscriber.isUnsubscribed()) {
                     subscriber.onCompleted();
                 }
-
-
             }
         }).publish();
     }

@@ -1,15 +1,14 @@
-package com.hoomi.rxjava;
+package com.hoomi.rxjava.first;
 
+import com.hoomi.rxjava.first.FirstExample;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
