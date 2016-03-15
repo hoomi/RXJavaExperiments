@@ -2,6 +2,7 @@ package com.hoomi.rxjava;
 
 import rx.Observable;
 import rx.Observer;
+import rx.functions.Func2;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -17,17 +18,16 @@ public class ReactiveSum implements Observer<Double> {
 
     private PrintStream printStream;
     private InputStream inputStream;
-    private Double sum;
+    private double sum;
 
     public ReactiveSum(Observable<Double> a, Observable<Double> b) {
-        this(a,b,System.out);
+        this(a, b, System.out);
     }
 
     ReactiveSum(Observable<Double> a, Observable<Double> b, PrintStream printStream) {
         this.sum = 0d;
         this.printStream = printStream;
-        Observable.amb(a,b).subscribe(this);
-
+        Observable.combineLatest(a, b, (a1, b1) -> a1 + b1).subscribe(this);
     }
 
     void setPrintStream(PrintStream printStream) {
@@ -52,5 +52,9 @@ public class ReactiveSum implements Observer<Double> {
     public void onNext(Double aDouble) {
         this.sum = aDouble;
         printStream.println(aDouble);
+    }
+
+    public double getSum() {
+        return sum;
     }
 }

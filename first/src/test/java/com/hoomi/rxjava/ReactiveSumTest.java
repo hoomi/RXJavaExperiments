@@ -10,6 +10,8 @@ import rx.Observable;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
@@ -59,10 +61,8 @@ public class ReactiveSumTest {
         observableB = Observable.just(3.2d, 2.0d);
         reactiveSum = new ReactiveSum(observableA, observableB, mockedPrintStream);
 
-        InOrder inOrder = inOrder(mockedPrintStream);
-        inOrder.verify(mockedPrintStream).println(new Double(5.2d));
-        inOrder.verify(mockedPrintStream).println(new Double(4.0d));
-        inOrder.verify(mockedPrintStream).println("Completed");
+        assertTrue(4.0d == reactiveSum.getSum());
+        verify(mockedPrintStream, atLeastOnce()).println("Completed");
     }
 
     @Test
@@ -71,24 +71,18 @@ public class ReactiveSumTest {
         observableB = Observable.just(3.2d, 2.0d);
         reactiveSum = new ReactiveSum(observableA, observableB, mockedPrintStream);
 
-        InOrder inOrder = inOrder(mockedPrintStream);
-        inOrder.verify(mockedPrintStream).println(new Double(5.2d));
-        inOrder.verify(mockedPrintStream).println(new Double(4.7d));
-        inOrder.verify(mockedPrintStream).println(new Double(3.5d));
-        inOrder.verify(mockedPrintStream).println("Completed");
+        assertTrue(3.5d == reactiveSum.getSum());
+        verify(mockedPrintStream, atLeastOnce()).println("Completed");
     }
 
     @Test
     public void testSubscribe_5Inputs() throws Exception {
-        observableA = Observable.just(2.0d, 1.5d, 1.0d);
+        observableA = Observable.just(2.0d, 1.5d, 3.0d);
         observableB = Observable.just(3.2d, 2.0d);
         reactiveSum = new ReactiveSum(observableA, observableB, mockedPrintStream);
 
-        InOrder inOrder = inOrder(mockedPrintStream);
-        inOrder.verify(mockedPrintStream).println(new Double(5.2d));
-        inOrder.verify(mockedPrintStream).println(new Double(4.7d));
-        inOrder.verify(mockedPrintStream).println(new Double(3.5d));
-        inOrder.verify(mockedPrintStream).println(new Double(1.5d));
-        inOrder.verify(mockedPrintStream).println("Completed");
+        assertTrue(5.0d == reactiveSum.getSum());
+        verify(mockedPrintStream, atLeastOnce()).println("Completed");
+
     }
 }
